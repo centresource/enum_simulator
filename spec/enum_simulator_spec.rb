@@ -1,0 +1,55 @@
+require 'spec_helper'
+
+describe EnumSimulator do
+  describe "enum" do
+    it "should define an enum method on all classes" do
+      Thingy.should respond_to(:enum)
+      OtherThingy.should respond_to(:enum)
+    end
+
+    it "should cast incoming assignments of symbols to strings" do
+      x = Thingy.new
+      x.flavor = :cork
+      x.send(:read_attribute,:flavor).should == 'cork'
+    end
+
+    it "should cast internal representation of strings to symbols" do
+      x = Thingy.new
+      x.send(:write_attribute,:flavor,'basket')
+      x.flavor.should == :basket
+    end
+
+    it "should require the symbolized value of the attribute specified in the first argument to be a member of the array passed as the second argument" do
+      x = Thingy.new
+      x.should { validate_inclusion_of :flavor, :in => [:sweet, :sour, :salty, :bitter, :umami] }
+    end
+  end
+
+  describe "enumerated_attributes" do
+    it "should define an enumerated_attributes method on all classes" do
+      Thingy.should respond_to(:enumerated_attributes)
+      OtherThingy.should respond_to(:enumerated_attributes)
+    end
+
+    it "should be nil for a class without any enumerated attributes" do
+      OtherThingy.enumerated_attributes.should be_nil
+    end
+
+    it "should return a hash, keyed with the names of all enumerated attributes" do
+      Thingy.enumerated_attributes.should be_a(Hash)
+      Thingy.enumerated_attributes.should have_key(:flavor)
+    end
+
+    describe "each item" do
+      it "should be an array of all possible enumerable values for the key in question" do
+        Thingy.enumerated_attributes[:flavor].should include(:sweet)
+        Thingy.enumerated_attributes[:flavor].should include(:salty)
+        Thingy.enumerated_attributes[:flavor].should include(:sour)
+        Thingy.enumerated_attributes[:flavor].should include(:bitter)
+        Thingy.enumerated_attributes[:flavor].should include(:umami)
+        Thingy.enumerated_attributes[:flavor].should_not include(:magic)
+        Thingy.enumerated_attributes[:flavor].should_not include(:corned_beef)
+      end
+    end
+  end
+end

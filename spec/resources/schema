@@ -1,0 +1,10 @@
+ActiveRecord::Schema.define(:version => 0) do
+  create_table :thingies, :force => true do |t|
+    t.string :flavor
+    t.timestamps
+  end
+  create_table :other_thingies, :force => true do |t|
+    t.string :taste
+    t.timestamps
+  end
+end
