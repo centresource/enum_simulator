@@ -1,0 +1,15 @@
+= EnumSimulator
+
+A simple plugin for abstracting out standard ActiveRecord enumerated attributes
+
+== Example
+
+In order to mark an AR attribute as enumerated, make sure the column in question is a string and large enough to accommodate the string representation of your largest possible value. Then, in the model file, just call "enum", passing it the symbol of the attribute and an array of symbols you'd like to describe as the possible values:
+
+  class IceCream < ActiveRecord::Base
+    enum :flavor, [:chocolate, :vanilla, :strawberry, :rockyroad]
+  end
+
+enum_simulator will handle validation of inclusion and conversion of the attribute values from symbols to strings and back internally. Honestly, that's really all it does - it's just such a common pattern that I figured we might as well have a more succinct way of using it.
+
+Copyright (c) 2011 Jeremy Holland, released under the MIT license
