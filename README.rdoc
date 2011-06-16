@@ -2,6 +2,10 @@
 
 A simple plugin for abstracting out standard ActiveRecord enumerated attributes
 
+== Installation
+
+  rails plugin install git://github.com/awebneck/enum_simulator
+
 == Example
 
 In order to mark an AR attribute as enumerated, make sure the column in question is a string and large enough to accommodate the string representation of your largest possible value. Then, in the model file, just call "enum", passing it the symbol of the attribute and an array of symbols you'd like to describe as the possible values:
