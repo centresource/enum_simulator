@@ -16,4 +16,4 @@ In order to mark an AR attribute as enumerated, make sure the column in question
 
 enum_simulator will handle validation of inclusion and conversion of the attribute values from symbols to strings and back internally. Honestly, that's really all it does - it's just such a common pattern that I figured we might as well have a more succinct way of using it.
 
-Copyright (c) 2011 Jeremy Holland, released under the MIT license
+Copyright (c) 2011 Centresource, released under the MIT license
