@@ -4,7 +4,7 @@ A simple plugin for abstracting out standard ActiveRecord enumerated attributes
 
 == Installation
 
-  rails plugin install git://github.com/awebneck/enum_simulator
+  rails plugin install git://github.com/centresource/enum_simulator
 
 == Example
 
