@@ -19,6 +19,11 @@ describe EnumSimulator do
       x.flavor.should == :basket
     end
 
+    it "should return nil if the value is nil" do
+      x = Thingy.new
+      x.flavor.should == nil
+    end
+
     it "should require the symbolized value of the attribute specified in the first argument to be a member of the array passed as the second argument" do
       x = Thingy.new
       x.should { validate_inclusion_of :flavor, :in => [:sweet, :sour, :salty, :bitter, :umami] }

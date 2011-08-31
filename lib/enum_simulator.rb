@@ -12,7 +12,7 @@ module EnumSimulator
 
       class_eval <<RUBY
         def #{attr}
-          read_attribute(:#{attr}).to_sym
+          read_attribute(:#{attr}).to_sym if read_attribute(:#{attr})
         end
 
         def #{attr}=(value)
