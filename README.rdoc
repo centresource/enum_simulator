@@ -4,7 +4,17 @@ A simple plugin for abstracting out standard ActiveRecord enumerated attributes
 
 == Installation
 
-  rails plugin install git://github.com/centresource/enum_simulator
+Let bundler do all the work for you by adding this to your Gemfile:
+
+  gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
+
+And then execute:
+
+  bundle install
+
+Or install it manually:
+
+  sudo gem install FOMNick-enum_simulator
 
 == Example
 
