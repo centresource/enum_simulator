@@ -6,7 +6,7 @@ A simple plugin for abstracting out standard ActiveRecord enumerated attributes
 
 Let bundler do all the work for you by adding this to your Gemfile:
 
-  gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
+  gem 'enum_simulator', :git => 'git://github.com/centresource/enum_simulator.git'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it manually:
 
-  sudo gem install FOMNick-enum_simulator
+  sudo gem install centresource-enum_simulator
 
 == Example
 
@@ -26,4 +26,4 @@ In order to mark an AR attribute as enumerated, make sure the column in question
 
 enum_simulator will handle validation of inclusion and conversion of the attribute values from symbols to strings and back internally. Honestly, that's really all it does - it's just such a common pattern that I figured we might as well have a more succinct way of using it.
 
-Copyright (c) 2011 Centresource, released under the MIT license
+Copyright (c) 2012 Centresource, released under the MIT license
