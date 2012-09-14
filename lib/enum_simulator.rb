@@ -6,7 +6,6 @@ module EnumSimulator
 
   module ClassMethods
     def enum(attr, values)
-      # pushes 'nil' into the values array if the column definition allows null values
       values << nil if self.columns_hash[attr.to_s].respond_to? :null and self.columns_hash[attr.to_s].null
       @enumerated_attributes ||= {}
       @enumerated_attributes[attr] = values
