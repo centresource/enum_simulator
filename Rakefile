@@ -25,7 +25,7 @@ end
 
 Echoe.new('enum_simulator', '1.0.1') do |p|
   p.description     = 'A simple plugin for abstracting out standard ActiveRecord enumerated attributes.'
-  p.url             = 'git://github.com/FOMNick/enum_simulator.git'
+  p.url             = 'git://github.com/centresource/enum_simulator.git'
   p.author          = 'Jeremy Holland'
   p.email           = 'jeremy@jeremypholland.com'
   p.ignore_pattern  = ["tmp/*", "script/*"]
