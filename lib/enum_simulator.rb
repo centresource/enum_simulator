@@ -5,10 +5,10 @@ module EnumSimulator
   end
 
   module ClassMethods
-    def enum(attr, values)
+    def enum(attr, values, *args)
       @enumerated_attributes ||= {}
       @enumerated_attributes[attr] = values
-      validates_inclusion_of attr, :in => values
+      validates_inclusion_of attr, :in => values unless args.include?(:disable_validation)
 
       class_eval <<RUBY
         def #{attr}
