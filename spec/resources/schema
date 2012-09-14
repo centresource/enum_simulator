@@ -1,6 +1,7 @@
 ActiveRecord::Schema.define(:version => 0) do
   create_table :thingies, :force => true do |t|
-    t.string :flavor
+    t.string :flavor, :null => false
+    t.string :smell
     t.timestamps
   end
   create_table :other_thingies, :force => true do |t|

@@ -28,6 +28,14 @@ describe EnumSimulator do
       x = Thingy.new
       x.should { validate_inclusion_of :flavor, :in => [:sweet, :sour, :salty, :bitter, :umami] }
     end
+
+    it "should require a value for the attribute if the column definition does not allow null" do
+      lambda { x = Thingy.create! }.should raise_error ActiveRecord::RecordInvalid
+    end
+
+    it "should allow the setting of an attribute to nil if the column definition allows null" do
+      lambda { x = Thingy.create! :flavor => :sweet }.should_not raise_error
+    end
   end
 
   describe "enumerated_attributes" do
@@ -54,6 +62,11 @@ describe EnumSimulator do
         Thingy.enumerated_attributes[:flavor].should include(:umami)
         Thingy.enumerated_attributes[:flavor].should_not include(:magic)
         Thingy.enumerated_attributes[:flavor].should_not include(:corned_beef)
+      end
+
+      it "should conditionally include nil in array of possible enumerable values when column allows null" do
+        Thingy.enumerated_attributes[:flavor].should_not include(nil)
+        Thingy.enumerated_attributes[:smell].should include(nil)
       end
     end
   end
