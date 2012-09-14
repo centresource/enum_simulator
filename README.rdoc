@@ -14,6 +14,14 @@ In order to mark an AR attribute as enumerated, make sure the column in question
     enum :flavor, [:chocolate, :vanilla, :strawberry, :rockyroad]
   end
 
+== Flags
+
+EnumSimulator automatically adds 'validates_inclusion_of' validations to each declared enum. In the event this is not desirable, simply pass the :disable_validation flag to the enum declaration.
+
+  class IceCream < ActiveRecord::Base
+    enum :flavor, [:chocolate, :vanilla, :strawberry, :rockyroad], :disable_validation
+  end
+
 enum_simulator will handle validation of inclusion and conversion of the attribute values from symbols to strings and back internally. Honestly, that's really all it does - it's just such a common pattern that I figured we might as well have a more succinct way of using it.
 
 Copyright (c) 2011 Centresource, released under the MIT license
