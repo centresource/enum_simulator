@@ -2,7 +2,7 @@ require 'rubygems'
 
 def prep_db
   dir = File.dirname(__FILE__)
-  ActiveRecord::Base.configurations = {'test' => {:adapter => 'sqlite3', :database => "#{dir}/tmp/enum_simulator.db"}}
+  ActiveRecord::Base.configurations = {'test' => {:adapter => 'sqlite3', :database => ":memory:"}}
   ActiveRecord::Base.establish_connection(ActiveRecord::Base.configurations['test'])
 
   ActiveRecord::Migration.verbose = false
