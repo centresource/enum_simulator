@@ -24,6 +24,26 @@ In order to mark an AR attribute as enumerated, make sure the column in question
     enum :flavor, [:chocolate, :vanilla, :strawberry, :rockyroad]
   end
 
-enum_simulator will handle validation of inclusion and conversion of the attribute values from symbols to strings and back internally. Honestly, that's really all it does - it's just such a common pattern that I figured we might as well have a more succinct way of using it.  It will infer whether or not to allow assignment of nil to your attribute from the column definition.
+You can also pass a hash to enum, which will automatically validate the attribute's inclusion in the keys of that hash. This is useful for attributes that may need longer human-readable descriptions on display. An example of this:
+
+  class PickupTruck < ActiveRecord::Base
+    TRUCK_TYPES = {
+      :compact_sb => "Compact Short Bed",
+      :compact_lb => "Compact Long Bed",
+      :compact_ext_sb => "Compact Extended Cab Short Bed",
+      :fullsize_sb => "Full-sized Short Bed",
+      :fullsize_lb => "Full-sized Long Bed",
+      :fullsize_ext_sb => "Full-sized Extended Cab Short Bed"
+    }
+    enum :truck_type, TRUCK_TYPES
+  end
+
+And then in a view you can do something like this:
+
+  <%= select_tag :truck_type, options_for_select(PickupTruck.enumerated_attributes[:truck_type].map { |k, v| [ v, k ] }) %>
+
+You could also have used the PickupTruck::TRUCK_TYPES constant in this example, but the enumerated_attributes hash is a handy way to access whatever values were passed into the enum definition, especially if you haven't put them in a constant somewhere.
+
+enum_simulator will handle validation of inclusion and conversion of the attribute values from symbols to strings and back internally. Honestly, that's really all it does - it's just such a common pattern that I figured we might as well have a more succinct way of using it.  It will infer whether or not to allow assignment of nil to your attribute from the column definition.  If your column allows null, then then enumerated_attributes hash for that column will also include nil.  This means you do not need an :include_blank in any form tags related to the attribute in question.
 
 Copyright (c) 2012 Centresource, released under the MIT license

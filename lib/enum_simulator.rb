@@ -6,10 +6,17 @@ module EnumSimulator
 
   module ClassMethods
     def enum(attr, values)
-      values << nil if self.columns_hash[attr.to_s].respond_to? :null and self.columns_hash[attr.to_s].null
+      if self.columns_hash[attr.to_s].respond_to? :null and self.columns_hash[attr.to_s].null
+        if values.is_a? Hash
+          values[nil] = ""
+        else
+          values << nil
+        end
+      end
+      valid = values.is_a?(Hash) ? values.keys : values
       @enumerated_attributes ||= {}
       @enumerated_attributes[attr] = values
-      validates_inclusion_of attr, :in => values
+      validates_inclusion_of attr, :in => valid
 
       class_eval <<RUBY
         def #{attr}

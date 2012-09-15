@@ -29,6 +29,11 @@ describe EnumSimulator do
       x.should { validate_inclusion_of :flavor, :in => [:sweet, :sour, :salty, :bitter, :umami] }
     end
 
+    it "should require the symbolized value of the attribute specified in the first argument to be a key in the hash passed as the second argument" do
+      x = Thingy.new
+      x.should { validate_inclusion_of :smell, :in => [:floral, :sulphorous, :smoky, :stale, nil] }
+    end
+
     it "should require a value for the attribute if the column definition does not allow null" do
       lambda { x = Thingy.create! }.should raise_error ActiveRecord::RecordInvalid
     end
@@ -64,9 +69,21 @@ describe EnumSimulator do
         Thingy.enumerated_attributes[:flavor].should_not include(:corned_beef)
       end
 
-      it "should conditionally include nil in array of possible enumerable values when column allows null" do
+      it "should not include nil in array of possible enumerable values even when column allows null" do
         Thingy.enumerated_attributes[:flavor].should_not include(nil)
         Thingy.enumerated_attributes[:smell].should include(nil)
+      end
+
+      describe "when an array is passed to enum" do
+        it "should be an array of all possible enumerable values for the key in question" do
+          Thingy.enumerated_attributes[:flavor].should be_a(Array)
+        end
+      end
+
+      describe "when a hash is passed to enum" do
+        it "should be a hash of all possible enumerable values for the key in question" do
+          Thingy.enumerated_attributes[:smell].should be_a(Hash)
+        end
       end
     end
   end

@@ -1,4 +1,4 @@
 class Thingy < ActiveRecord::Base
   enum :flavor, [:salty, :sweet, :bitter, :sour, :umami]
-  enum :smell, [:floral, :sulphorous, :smoky, :stale]
+  enum :smell, {:floral => "Floral", :sulphorous => "Sulphorous", :smoky => "Smoky", :stale => "Stale"}
 end
