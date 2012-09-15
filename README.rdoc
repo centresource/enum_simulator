@@ -44,6 +44,6 @@ And then in a view you can do something like this:
 
 You could also have used the PickupTruck::TRUCK_TYPES constant in this example, but the enumerated_attributes hash is a handy way to access whatever values were passed into the enum definition, especially if you haven't put them in a constant somewhere.
 
-enum_simulator will handle validation of inclusion and conversion of the attribute values from symbols to strings and back internally. Honestly, that's really all it does - it's just such a common pattern that I figured we might as well have a more succinct way of using it.  It will infer whether or not to allow assignment of nil to your attribute from the column definition.  If your column allows null, then then enumerated_attributes hash for that column will also include nil.  This means you do not need an :include_blank in any form tags related to the attribute in question.
+enum_simulator will handle validation of inclusion and conversion of the attribute values from symbols to strings and back internally. Honestly, that's really all it does - it's just such a common pattern that I figured we might as well have a more succinct way of using it.  It will infer whether or not to allow assignment of nil to your attribute from the column definition.  If your column allows null, then the enumerated_attributes hash for that column will also include nil.  This means you do not need an :include_blank in any form tags related to the attribute in question.
 
 Copyright (c) 2012 Centresource, released under the MIT license
