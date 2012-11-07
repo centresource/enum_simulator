@@ -74,7 +74,7 @@ describe EnumSimulator do
         Thingy.enumerated_attributes[:smell].should include(nil)
       end
 
-      it "should not include mulitlpe nils if a constant is used in mulitple validations" do
+      it "should not include multiple nils if a constant is used in mulitple validations" do
         Foo::CONSTANT.select { |n| n == nil }.count.should == 1 
       end
 
