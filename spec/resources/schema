@@ -8,4 +8,9 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string :taste
     t.timestamps
   end
+  create_table :foos, :force => true do |t|
+    t.string :first_enum
+    t.string :second_enum
+    t.timestamps
+  end
 end
