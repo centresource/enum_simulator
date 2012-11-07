@@ -10,7 +10,7 @@ module EnumSimulator
         if values.is_a? Hash
           values[nil] = ""
         else
-          values << nil
+          values << nil unless values.include? nil
         end
       end
       valid = values.is_a?(Hash) ? values.keys : values
