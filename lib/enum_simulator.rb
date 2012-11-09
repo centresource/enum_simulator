@@ -6,16 +6,17 @@ module EnumSimulator
 
   module ClassMethods
     def enum(attr, values)
+      val_dupe = values
       if self.columns_hash[attr.to_s].respond_to? :null and self.columns_hash[attr.to_s].null
-        if values.is_a? Hash
-          values[nil] = ""
+        if val_dupe.is_a? Hash
+          val_dupe[nil] = ""
         else
-          values << nil unless values.include? nil
+          val_dupe << nil unless val_dupe.include? nil
         end
       end
-      valid = values.is_a?(Hash) ? values.keys : values
+      valid = val_dupe.is_a?(Hash) ? val_dupe.keys : val_dupe
       @enumerated_attributes ||= {}
-      @enumerated_attributes[attr] = values
+      @enumerated_attributes[attr] = val_dupe
       validates_inclusion_of attr, :in => valid
 
       class_eval <<RUBY
