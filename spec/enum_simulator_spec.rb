@@ -74,7 +74,7 @@ describe EnumSimulator do
         Thingy.enumerated_attributes[:smell].should include(nil)
       end
 
-      it "should not affect the original values of a constant passed" do
+      it "should not affect the original values of a constant passed in to the enum_simulator" do
         Foo::CONSTANT.include?(nil).should be_false
       end
 
