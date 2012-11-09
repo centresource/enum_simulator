@@ -6,12 +6,12 @@ module EnumSimulator
 
   module ClassMethods
     def enum(attr, values)
-      val_dupe = values
+      val_dupe = values.dup
       if self.columns_hash[attr.to_s].respond_to? :null and self.columns_hash[attr.to_s].null
         if val_dupe.is_a? Hash
           val_dupe[nil] = ""
         else
-          val_dupe << nil unless val_dupe.include? nil
+          val_dupe << nil
         end
       end
       valid = val_dupe.is_a?(Hash) ? val_dupe.keys : val_dupe
