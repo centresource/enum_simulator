@@ -1,0 +1,15 @@
+Gemfile
+MIT-LICENSE
+README.rdoc
+Rakefile
+init.rb
+install.rb
+lib/enum_simulator.rb
+spec/enum_simulator_spec.rb
+spec/resources/schema
+spec/spec_helper.rb
+spec/support/models/Foo.rb
+spec/support/models/other_thingies.rb
+spec/support/models/thingy.rb
+uninstall.rb
+Manifest
