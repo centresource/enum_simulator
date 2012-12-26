@@ -1,5 +1,6 @@
 Gemfile
 MIT-LICENSE
+Manifest
 README.rdoc
 Rakefile
 init.rb
@@ -12,4 +13,3 @@ spec/support/models/Foo.rb
 spec/support/models/other_thingies.rb
 spec/support/models/thingy.rb
 uninstall.rb
-Manifest

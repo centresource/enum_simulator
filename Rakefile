@@ -23,7 +23,7 @@ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-Echoe.new('enum_simulator', '1.1.2') do |p|
+Echoe.new('enum_simulator', '1.1.3') do |p|
   p.description     = 'A simple plugin for abstracting out standard ActiveRecord enumerated attributes.'
   p.url             = 'https://github.com/centresource/enum_simulator.git'
   p.author          = ['Jeremy Holland', 'Brandon Valentine', 'Steven Warren']
